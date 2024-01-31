@@ -137,8 +137,9 @@ table th, table td {
 
             <h4>Headers</h4>
             <pre class="request headers">Version: HTTP/1.0
+Accept: application/json
+Content-Type: application/json
 Host: example.org
-Content-Type: application/x-www-form-urlencoded
 Cookie: </pre>
 
           <h4>Route</h4>
@@ -146,7 +147,7 @@ Cookie: </pre>
 
 
             <h4>Body</h4>
-            <pre class="request body">email=1%40qq.com</pre>
+            <pre class="request body">{"email":"1@qq.com"}</pre>
 
 
             <h3>Response</h3>
@@ -158,10 +159,11 @@ X-Download-Options: noopen
 X-Permitted-Cross-Domain-Policies: none
 Referrer-Policy: strict-origin-when-cross-origin
 Content-Type: text/plain; charset=utf-8
+Vary: Accept
 ETag: W/&quot;36a9e7f1c95b82ffb99743e0c5c4ce95&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 7e7b2335-8076-4239-b892-9010fd8fe4eb
-X-Runtime: 0.037165
+X-Request-Id: be161d44-0017-4caf-9e67-e1a275b62b20
+X-Runtime: 0.035343
 Content-Length: 1</pre>
             <h4>Status</h4>
             <pre class="response status">200 OK</pre>
