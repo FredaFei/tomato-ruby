@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>标签 API</title>
+    <meta charset="utf-8">
+    <style>
+      
+body {
+  font-family: Helvetica,Arial,sans-serif;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 18px;
+  color: #404040;
+}
+
+.container {
+  width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+  zoom: 1;
+}
+
+pre {
+  background-color: #f5f5f5;
+  display: block;
+  padding: 8.5px;
+  margin: 0 0 18px;
+  line-height: 18px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+td.required .name:after {
+  float: right;
+  content: "required";
+  font-weight: normal;
+  color: #F08080;
+}
+
+a{
+  color: #0069d6;
+  text-decoration: none;
+  line-height: inherit;
+  font-weight: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  color: #404040;
+}
+
+h1 {
+  margin-bottom: 18px;
+  font-size: 30px;
+  line-height: 36px;
+}
+h2 {
+  font-size: 24px;
+  line-height: 36px;
+}
+h3{
+  font-size: 18px;
+  line-height: 36px;
+}
+h4 {
+  font-size: 16px;
+  line-height: 36px;
+}
+
+table{
+  width: 100%;
+  margin-bottom: 18px;
+  padding: 0;
+  border-collapse: separate;
+  font-size: 13px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  border-spacing: 0;
+  border: 1px solid #ddd;
+}
+
+table th {
+  padding-top: 9px;
+  font-weight: bold;
+  vertical-align: middle;
+  border-bottom: 1px solid #ddd;
+}
+table th+th, table td+td {
+  border-left: 1px solid #ddd;
+}
+table th, table td {
+  padding: 10px 10px 9px;
+  line-height: 18px;
+  text-align: left;
+}
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>标签 API</h1>
+
+      <div class="article">
+        <h2>获取标签列表</h2>
+        <h3>GET /api/v1/tags</h3>
+
+          <h3>Parameters</h3>
+          <table class="parameters table table-striped table-bordered table-condensed">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                    <span class="name">page</span>
+                </td>
+                <td>
+                  <span class="description">页码</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">kind</span>
+                </td>
+                <td>
+                  <span class="description">类型</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Response Fields</h3>
+          <table class="response-fields table table-striped table-bordered table-condensed">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                    <span class="name">resources[id]</span>
+                </td>
+                <td>
+                  <span class="description">ID</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">resources[name]</span>
+                </td>
+                <td>
+                  <span class="description">名称</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">resources[sign]</span>
+                </td>
+                <td>
+                  <span class="description">符号</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">resources[user_id]</span>
+                </td>
+                <td>
+                  <span class="description">用户ID</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">resources[deleted_at]</span>
+                </td>
+                <td>
+                  <span class="description">删除时间</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Request</h3>
+
+            <h4>Headers</h4>
+            <pre class="request headers">Version: HTTP/1.0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxOCwiZXhwIjoxNzA2NzY4NDEzfQ.TZD-IId5GoHfahRO-UL3C1SxXRQMU570f_ZSl8kQGbU
+Accept: application/json
+Content-Type: application/json
+Host: example.org
+Cookie: </pre>
+
+          <h4>Route</h4>
+          <pre class="request route highlight">GET /api/v1/tags</pre>
+
+
+
+
+            <h3>Response</h3>
+              <h4>Headers</h4>
+              <pre class="response headers">X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 0
+X-Content-Type-Options: nosniff
+X-Download-Options: noopen
+X-Permitted-Cross-Domain-Policies: none
+Referrer-Policy: strict-origin-when-cross-origin
+Content-Type: application/json; charset=utf-8
+ETag: W/&quot;8aeb99e6603bbc382ed4beddcbcfa87d&quot;
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: 505d1f20-66f8-4568-9780-ffd6b5a4b3dd
+X-Runtime: 0.005366
+vary: Accept, Origin
+Content-Length: 4473</pre>
+            <h4>Status</h4>
+            <pre class="response status">200 OK</pre>
+              <h4>Body</h4>
+              <pre class="response body">{
+  &quot;resources&quot;: [
+    {
+      &quot;id&quot;: 86,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;Est.&quot;,
+      &quot;sign&quot;: &quot;😀&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.765+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.765+08:00&quot;
+    },
+    {
+      &quot;id&quot;: 85,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;A a.&quot;,
+      &quot;sign&quot;: &quot;😀&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.762+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.762+08:00&quot;
+    },
+    {
+      &quot;id&quot;: 84,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;Off.&quot;,
+      &quot;sign&quot;: &quot;😡&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.760+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.760+08:00&quot;
+    },
+    {
+      &quot;id&quot;: 83,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;Odi.&quot;,
+      &quot;sign&quot;: &quot;😀&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.758+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.758+08:00&quot;
+    },
+    {
+      &quot;id&quot;: 82,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;Nat.&quot;,
+      &quot;sign&quot;: &quot;😀&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.756+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.756+08:00&quot;
+    },
+    {
+      &quot;id&quot;: 81,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;Ius.&quot;,
+      &quot;sign&quot;: &quot;❤&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.754+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.754+08:00&quot;
+    },
+    {
+      &quot;id&quot;: 80,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;Ame.&quot;,
+      &quot;sign&quot;: &quot;❤&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.752+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.752+08:00&quot;
+    },
+    {
+      &quot;id&quot;: 79,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;Neq.&quot;,
+      &quot;sign&quot;: &quot;😡&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.750+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.750+08:00&quot;
+    },
+    {
+      &quot;id&quot;: 78,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;Rei.&quot;,
+      &quot;sign&quot;: &quot;❤&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.748+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.748+08:00&quot;
+    },
+    {
+      &quot;id&quot;: 77,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;Qui.&quot;,
+      &quot;sign&quot;: &quot;❤&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.745+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.745+08:00&quot;
+    },
+    {
+      &quot;id&quot;: 76,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;Vol.&quot;,
+      &quot;sign&quot;: &quot;😡&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.743+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.743+08:00&quot;
+    },
+    {
+      &quot;id&quot;: 75,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;Max.&quot;,
+      &quot;sign&quot;: &quot;❤&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.741+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.741+08:00&quot;
+    },
+    {
+      &quot;id&quot;: 74,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;Sit.&quot;,
+      &quot;sign&quot;: &quot;❤&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.739+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.739+08:00&quot;
+    },
+    {
+      &quot;id&quot;: 73,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;Dis.&quot;,
+      &quot;sign&quot;: &quot;😀&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.738+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.738+08:00&quot;
+    },
+    {
+      &quot;id&quot;: 72,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;Mol.&quot;,
+      &quot;sign&quot;: &quot;❤&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.735+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.735+08:00&quot;
+    },
+    {
+      &quot;id&quot;: 71,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;Cor.&quot;,
+      &quot;sign&quot;: &quot;❤&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.733+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.733+08:00&quot;
+    },
+    {
+      &quot;id&quot;: 70,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;Aut.&quot;,
+      &quot;sign&quot;: &quot;❤&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.730+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.730+08:00&quot;
+    },
+    {
+      &quot;id&quot;: 69,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;Ita.&quot;,
+      &quot;sign&quot;: &quot;❤&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.727+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.727+08:00&quot;
+    },
+    {
+      &quot;id&quot;: 68,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;Et .&quot;,
+      &quot;sign&quot;: &quot;😀&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.725+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.725+08:00&quot;
+    },
+    {
+      &quot;id&quot;: 67,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;Dol.&quot;,
+      &quot;sign&quot;: &quot;😡&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.723+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.723+08:00&quot;
+    },
+    {
+      &quot;id&quot;: 66,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;Mag.&quot;,
+      &quot;sign&quot;: &quot;😡&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.720+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.720+08:00&quot;
+    },
+    {
+      &quot;id&quot;: 65,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;Et .&quot;,
+      &quot;sign&quot;: &quot;❤&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.716+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.716+08:00&quot;
+    },
+    {
+      &quot;id&quot;: 64,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;Sim.&quot;,
+      &quot;sign&quot;: &quot;😀&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.713+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.713+08:00&quot;
+    },
+    {
+      &quot;id&quot;: 63,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;Qui.&quot;,
+      &quot;sign&quot;: &quot;😀&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.710+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.710+08:00&quot;
+    },
+    {
+      &quot;id&quot;: 62,
+      &quot;user_id&quot;: 18,
+      &quot;name&quot;: &quot;Sin.&quot;,
+      &quot;sign&quot;: &quot;😀&quot;,
+      &quot;deleted_at&quot;: null,
+      &quot;kind&quot;: &quot;expenses&quot;,
+      &quot;created_at&quot;: &quot;2024-02-01T12:20:13.707+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.707+08:00&quot;
+    }
+  ],
+  &quot;pager&quot;: {
+    &quot;page&quot;: 1,
+    &quot;per_page&quot;: 25,
+    &quot;count&quot;: 26
+  }
+}</pre>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>会话 API</title>
+    <title>标签 API</title>
     <meta charset="utf-8">
     <style>
       
@@ -106,11 +106,11 @@ table th, table td {
   </head>
   <body>
     <div class="container">
-      <h1>会话 API</h1>
+      <h1>标签 API</h1>
 
       <div class="article">
-        <h2>登录</h2>
-        <h3>POST /api/v1/session</h3>
+        <h2>创建标签</h2>
+        <h3>POST /api/v1/tags</h3>
 
           <h3>Parameters</h3>
           <table class="parameters table table-striped table-bordered table-condensed">
@@ -123,18 +123,26 @@ table th, table td {
             <tbody>
               <tr>
                 <td class="required">
-                    <span class="name">email</span>
+                    <span class="name">name</span>
                 </td>
                 <td>
-                  <span class="description">邮箱</span>
+                  <span class="description">名称</span>
                 </td>
               </tr>
               <tr>
                 <td class="required">
-                    <span class="name">code</span>
+                    <span class="name">sign</span>
                 </td>
                 <td>
-                  <span class="description">验证码</span>
+                  <span class="description">符号</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="required">
+                    <span class="name">kind</span>
+                </td>
+                <td>
+                  <span class="description">类型</span>
                 </td>
               </tr>
             </tbody>
@@ -151,10 +159,42 @@ table th, table td {
             <tbody>
               <tr>
                 <td>
-                    <span class="name">jwt</span>
+                    <span class="name">resource[id]</span>
                 </td>
                 <td>
-                  <span class="description">用于验证用户身份的 token</span>
+                  <span class="description">ID</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">resource[name]</span>
+                </td>
+                <td>
+                  <span class="description">名称</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">resource[sign]</span>
+                </td>
+                <td>
+                  <span class="description">符号</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">resource[user_id]</span>
+                </td>
+                <td>
+                  <span class="description">用户ID</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">resource[deleted_at]</span>
+                </td>
+                <td>
+                  <span class="description">删除时间</span>
                 </td>
               </tr>
             </tbody>
@@ -164,17 +204,18 @@ table th, table td {
 
             <h4>Headers</h4>
             <pre class="request headers">Version: HTTP/1.0
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxOSwiZXhwIjoxNzA2NzY4NDEzfQ.mSXF9Wjuf482d2fPI9hPJm5W-3BJeHdfcwocePPxvSY
 Accept: application/json
 Content-Type: application/json
 Host: example.org
 Cookie: </pre>
 
           <h4>Route</h4>
-          <pre class="request route highlight">POST /api/v1/session</pre>
+          <pre class="request route highlight">POST /api/v1/tags</pre>
 
 
             <h4>Body</h4>
-            <pre class="request body">{"email":"1@qq.com","code":"123456"}</pre>
+            <pre class="request body">{"name":"x","sign":"x","kind":"income"}</pre>
 
 
             <h3>Response</h3>
@@ -186,17 +227,26 @@ X-Download-Options: noopen
 X-Permitted-Cross-Domain-Policies: none
 Referrer-Policy: strict-origin-when-cross-origin
 Content-Type: application/json; charset=utf-8
-ETag: W/&quot;aa59366111c4bc4a65603d2f61f5aae9&quot;
+ETag: W/&quot;b41e91e693ef662935d8091e35fd48d5&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 0992b525-d523-4ae9-9e50-37d86235299f
-X-Runtime: 0.008035
+X-Request-Id: dfdc1071-1526-4808-977f-9e549478699d
+X-Runtime: 0.003417
 vary: Accept, Origin
-Content-Length: 117</pre>
+Content-Length: 181</pre>
             <h4>Status</h4>
             <pre class="response status">200 OK</pre>
               <h4>Body</h4>
               <pre class="response body">{
-  &quot;jwt&quot;: &quot;eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxNiwiZXhwIjoxNzA2NzY4NDEzfQ.WOLtiDRRFiEvaxaku0pWH1XixwIZNfOYmiacxWtWGto&quot;
+  &quot;resource&quot;: {
+    &quot;id&quot;: 87,
+    &quot;user_id&quot;: 19,
+    &quot;name&quot;: &quot;x&quot;,
+    &quot;sign&quot;: &quot;x&quot;,
+    &quot;deleted_at&quot;: null,
+    &quot;kind&quot;: &quot;income&quot;,
+    &quot;created_at&quot;: &quot;2024-02-01T12:20:13.777+08:00&quot;,
+    &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.777+08:00&quot;
+  }
 }</pre>
       </div>
     </div>

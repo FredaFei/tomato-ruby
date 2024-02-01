@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>当前用户 API</title>
+    <title>标签 API</title>
     <meta charset="utf-8">
     <style>
       
@@ -106,26 +106,77 @@ table th, table td {
   </head>
   <body>
     <div class="container">
-      <h1>当前用户 API</h1>
+      <h1>标签 API</h1>
 
       <div class="article">
-        <h2>获取当前用户</h2>
-        <h3>GET /api/v1/me</h3>
+        <h2>获取标签</h2>
+        <h3>GET /api/v1/tags/:id</h3>
 
 
+          <h3>Response Fields</h3>
+          <table class="response-fields table table-striped table-bordered table-condensed">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                    <span class="name">resource[id]</span>
+                </td>
+                <td>
+                  <span class="description">ID</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">resource[name]</span>
+                </td>
+                <td>
+                  <span class="description">名称</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">resource[sign]</span>
+                </td>
+                <td>
+                  <span class="description">符号</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">resource[user_id]</span>
+                </td>
+                <td>
+                  <span class="description">用户ID</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">resource[deleted_at]</span>
+                </td>
+                <td>
+                  <span class="description">删除时间</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
 
           <h3>Request</h3>
 
             <h4>Headers</h4>
             <pre class="request headers">Version: HTTP/1.0
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxNSwiZXhwIjoxNzA2NzY4NDEzfQ.v6Xlw4cC9iq_bXTPce3DnNMOCzfrH6mNmfTzmYIVH-U
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxNywiZXhwIjoxNzA2NzY4NDEzfQ.PzNsKjCwV0B94zkniubNpTix0UtUb9oZTWC1PIbLzc8
 Accept: application/json
 Content-Type: application/json
 Host: example.org
 Cookie: </pre>
 
           <h4>Route</h4>
-          <pre class="request route highlight">GET /api/v1/me</pre>
+          <pre class="request route highlight">GET /api/v1/tags/60</pre>
 
 
 
@@ -139,22 +190,25 @@ X-Download-Options: noopen
 X-Permitted-Cross-Domain-Policies: none
 Referrer-Policy: strict-origin-when-cross-origin
 Content-Type: application/json; charset=utf-8
-ETag: W/&quot;889fcfe35b22c6aa52ee102f74e0c718&quot;
+ETag: W/&quot;d479af7d11916c87c1178861108f9110&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 6cdf6868-f585-4261-8d27-865a836ee1b7
-X-Runtime: 0.020833
+X-Request-Id: 8849d349-f5d8-42cf-ad26-514e1c0df962
+X-Runtime: 0.005541
 vary: Accept, Origin
-Content-Length: 167</pre>
+Content-Length: 189</pre>
             <h4>Status</h4>
             <pre class="response status">200 OK</pre>
               <h4>Body</h4>
               <pre class="response body">{
   &quot;resource&quot;: {
-    &quot;id&quot;: 15,
-    &quot;email&quot;: &quot;dario.koelpin@mills-oreilly.test&quot;,
-    &quot;name&quot;: null,
-    &quot;created_at&quot;: &quot;2024-02-01T12:20:13.610+08:00&quot;,
-    &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.610+08:00&quot;
+    &quot;id&quot;: 60,
+    &quot;user_id&quot;: 17,
+    &quot;name&quot;: &quot;Cor.&quot;,
+    &quot;sign&quot;: &quot;😡&quot;,
+    &quot;deleted_at&quot;: null,
+    &quot;kind&quot;: &quot;expenses&quot;,
+    &quot;created_at&quot;: &quot;2024-02-01T12:20:13.691+08:00&quot;,
+    &quot;updated_at&quot;: &quot;2024-02-01T12:20:13.691+08:00&quot;
   }
 }</pre>
       </div>
