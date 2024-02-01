@@ -12,11 +12,6 @@ gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
-# psych 安装 v5.1.2版本异常，相关issues: https://discuss.rubyonrails.org/t/cant-setup-rails-psych-yaml-issue/83968/10
-gem "psych", "4.0.0"
-
-gem 'rspec_api_documentation', path: './vendor/rspec_api_documentation'
-
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
@@ -41,6 +36,12 @@ gem "bootsnap", require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem "rack-cors"
 
+# psych 安装 v5.1.2版本异常，相关issues: https://discuss.rubyonrails.org/t/cant-setup-rails-psych-yaml-issue/83968/10
+gem "psych", "4.0.0"
+
+gem 'rspec_api_documentation', path: './vendor/rspec_api_documentation'
+gem 'jwt'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
@@ -52,3 +53,7 @@ group :development do
   # gem "spring"
 end
 
+group :test do
+  gem 'factory_bot_rails'
+  gem 'faker'
+end
