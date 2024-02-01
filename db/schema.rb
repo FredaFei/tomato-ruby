@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_01_040617) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_01_042732) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "items", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "amount"
+    t.text "note"
+    t.bigint "tags_id", array: true
+    t.datetime "happened_at"
+    t.datetime "deleted_at"
+    t.integer "kind", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "tags", force: :cascade do |t|
     t.bigint "user_id", null: false
