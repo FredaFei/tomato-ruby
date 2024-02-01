@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>标签 API</title>
+    <title>账目 API</title>
     <meta charset="utf-8">
     <style>
       
@@ -106,11 +106,11 @@ table th, table td {
   </head>
   <body>
     <div class="container">
-      <h1>标签 API</h1>
+      <h1>账目 API</h1>
 
       <div class="article">
-        <h2>修改标签</h2>
-        <h3>PATCH /api/v1/tags/:id</h3>
+        <h2>创建账目</h2>
+        <h3>POST /api/v1/items</h3>
 
           <h3>Parameters</h3>
           <table class="parameters table table-striped table-bordered table-condensed">
@@ -122,19 +122,35 @@ table th, table td {
             </thead>
             <tbody>
               <tr>
-                <td>
-                    <span class="name">name</span>
+                <td class="required">
+                    <span class="name">amount</span>
                 </td>
                 <td>
-                  <span class="description">名称</span>
+                  <span class="description">金额（单位：分）</span>
                 </td>
               </tr>
               <tr>
-                <td>
-                    <span class="name">sign</span>
+                <td class="required">
+                    <span class="name">kind</span>
                 </td>
                 <td>
-                  <span class="description">符号</span>
+                  <span class="description">类型</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="required">
+                    <span class="name">happen_at</span>
+                </td>
+                <td>
+                  <span class="description">发生时间</span>
+                </td>
+              </tr>
+              <tr>
+                <td class="required">
+                    <span class="name">tag_ids</span>
+                </td>
+                <td>
+                  <span class="description">标签列表（只传ID）</span>
                 </td>
               </tr>
             </tbody>
@@ -154,39 +170,39 @@ table th, table td {
                     <span class="name">resource[id]</span>
                 </td>
                 <td>
-                  <span class="description">ID</span>
+                  <span class="description">Resource id</span>
                 </td>
               </tr>
               <tr>
                 <td>
-                    <span class="name">resource[name]</span>
+                    <span class="name">resource[amount]</span>
                 </td>
                 <td>
-                  <span class="description">名称</span>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                    <span class="name">resource[sign]</span>
-                </td>
-                <td>
-                  <span class="description">符号</span>
+                  <span class="description">Resource amount</span>
                 </td>
               </tr>
               <tr>
                 <td>
-                    <span class="name">resource[user_id]</span>
+                    <span class="name">resource[kind]</span>
                 </td>
                 <td>
-                  <span class="description">用户ID</span>
+                  <span class="description">Resource kind</span>
                 </td>
               </tr>
               <tr>
                 <td>
-                    <span class="name">resource[deleted_at]</span>
+                    <span class="name">resource[happen_at]</span>
                 </td>
                 <td>
-                  <span class="description">删除时间</span>
+                  <span class="description">Resource happen at</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">resource[tag_ids]</span>
+                </td>
+                <td>
+                  <span class="description">Resource tag ids</span>
                 </td>
               </tr>
             </tbody>
@@ -196,18 +212,18 @@ table th, table td {
 
             <h4>Headers</h4>
             <pre class="request headers">Version: HTTP/1.0
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMDksImV4cCI6MTcwNjc4NDgwMX0.GKviEtiVsUa_yVZ3L6jJ7k0JGSH6yrY2yWTjDXVVod4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo5OCwiZXhwIjoxNzA2Nzg0ODAwfQ.2MiBtjd-wMXz2tAAOpXrzVFqki4t_XNS3B-Xh1zuU_4
 Accept: application/json
 Content-Type: application/json
 Host: example.org
 Cookie: </pre>
 
           <h4>Route</h4>
-          <pre class="request route highlight">PATCH /api/v1/tags/292</pre>
+          <pre class="request route highlight">POST /api/v1/items</pre>
 
 
             <h4>Body</h4>
-            <pre class="request body">{"name":"y","sign":"y"}</pre>
+            <pre class="request body">{"amount":9900,"kind":"expenses","happen_at":"2020-10-30T00:00:00+08:00","tag_ids":[255,256]}</pre>
 
 
             <h3>Response</h3>
@@ -219,25 +235,53 @@ X-Download-Options: noopen
 X-Permitted-Cross-Domain-Policies: none
 Referrer-Policy: strict-origin-when-cross-origin
 Content-Type: application/json; charset=utf-8
-ETag: W/&quot;2b307ab59972bd4594cdbb4b82b58cc1&quot;
+ETag: W/&quot;6792744c3ac568f48f79fb365af1c7a5&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 256d5baf-7faa-49d1-bccf-cb7c539e2567
-X-Runtime: 0.004819
+X-Request-Id: 55e592b1-3ec6-4dee-ad5a-9e5b50902484
+X-Runtime: 0.011390
 vary: Accept, Origin
-Content-Length: 185</pre>
+Content-Length: 663</pre>
             <h4>Status</h4>
             <pre class="response status">200 OK</pre>
               <h4>Body</h4>
               <pre class="response body">{
   &quot;resource&quot;: {
-    &quot;name&quot;: &quot;y&quot;,
-    &quot;sign&quot;: &quot;y&quot;,
-    &quot;id&quot;: 292,
-    &quot;user_id&quot;: 109,
+    &quot;id&quot;: 209,
+    &quot;user_id&quot;: 98,
+    &quot;amount&quot;: 9900,
+    &quot;note&quot;: null,
+    &quot;tag_ids&quot;: [
+      255,
+      256
+    ],
+    &quot;happened_at&quot;: &quot;2020-10-30T00:00:00.000+08:00&quot;,
     &quot;deleted_at&quot;: null,
     &quot;kind&quot;: &quot;expenses&quot;,
-    &quot;created_at&quot;: &quot;2024-02-01T16:53:21.049+08:00&quot;,
-    &quot;updated_at&quot;: &quot;2024-02-01T16:53:21.058+08:00&quot;
+    &quot;created_at&quot;: &quot;2024-02-01T16:53:20.765+08:00&quot;,
+    &quot;updated_at&quot;: &quot;2024-02-01T16:53:20.765+08:00&quot;,
+    &quot;happen_at&quot;: &quot;2020-10-30T00:00:00.000+08:00&quot;,
+    &quot;tags&quot;: [
+      {
+        &quot;id&quot;: 256,
+        &quot;user_id&quot;: 98,
+        &quot;name&quot;: &quot;Eiu.&quot;,
+        &quot;sign&quot;: &quot;😡&quot;,
+        &quot;deleted_at&quot;: null,
+        &quot;kind&quot;: &quot;expenses&quot;,
+        &quot;created_at&quot;: &quot;2024-02-01T16:53:20.758+08:00&quot;,
+        &quot;updated_at&quot;: &quot;2024-02-01T16:53:20.758+08:00&quot;
+      },
+      {
+        &quot;id&quot;: 255,
+        &quot;user_id&quot;: 98,
+        &quot;name&quot;: &quot;Rer.&quot;,
+        &quot;sign&quot;: &quot;😀&quot;,
+        &quot;deleted_at&quot;: null,
+        &quot;kind&quot;: &quot;expenses&quot;,
+        &quot;created_at&quot;: &quot;2024-02-01T16:53:20.756+08:00&quot;,
+        &quot;updated_at&quot;: &quot;2024-02-01T16:53:20.756+08:00&quot;
+      }
+    ]
   }
 }</pre>
       </div>

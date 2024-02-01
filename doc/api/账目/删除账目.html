@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>标签 API</title>
+    <title>账目 API</title>
     <meta charset="utf-8">
     <style>
       
@@ -106,77 +106,26 @@ table th, table td {
   </head>
   <body>
     <div class="container">
-      <h1>标签 API</h1>
+      <h1>账目 API</h1>
 
       <div class="article">
-        <h2>获取标签</h2>
-        <h3>GET /api/v1/tags/:id</h3>
+        <h2>删除账目</h2>
+        <h3>DELETE /api/v1/items/:id</h3>
 
 
-          <h3>Response Fields</h3>
-          <table class="response-fields table table-striped table-bordered table-condensed">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                    <span class="name">resource[id]</span>
-                </td>
-                <td>
-                  <span class="description">ID</span>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                    <span class="name">resource[name]</span>
-                </td>
-                <td>
-                  <span class="description">名称</span>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                    <span class="name">resource[sign]</span>
-                </td>
-                <td>
-                  <span class="description">符号</span>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                    <span class="name">resource[user_id]</span>
-                </td>
-                <td>
-                  <span class="description">用户ID</span>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                    <span class="name">resource[deleted_at]</span>
-                </td>
-                <td>
-                  <span class="description">删除时间</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
 
           <h3>Request</h3>
 
             <h4>Headers</h4>
             <pre class="request headers">Version: HTTP/1.0
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMDYsImV4cCI6MTcwNjc4NDgwMH0.NvSY-YO9FV_FyklscIeO48igQiqIZu4QX3nHPTQY878
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo5OSwiZXhwIjoxNzA2Nzg0ODAwfQ.dSY3yaC3Z6DJuskFF_PBL8Uri7-n3Qth991DAGOsC28
 Accept: application/json
 Content-Type: application/json
 Host: example.org
 Cookie: </pre>
 
           <h4>Route</h4>
-          <pre class="request route highlight">GET /api/v1/tags/264</pre>
+          <pre class="request route highlight">DELETE /api/v1/items/210</pre>
 
 
 
@@ -190,25 +139,42 @@ X-Download-Options: noopen
 X-Permitted-Cross-Domain-Policies: none
 Referrer-Policy: strict-origin-when-cross-origin
 Content-Type: application/json; charset=utf-8
-ETag: W/&quot;c32c2aab6c691cf923d85a2654c48ba7&quot;
+ETag: W/&quot;0bc360944a280d7a11187a27989e9348&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 82b3acdf-73ad-488d-9a71-01e2a6c863f4
-X-Runtime: 0.003545
+X-Request-Id: 14d00cc2-5753-4068-92e5-77e5db29bed2
+X-Runtime: 0.007631
 vary: Accept, Origin
-Content-Length: 190</pre>
+Content-Length: 508</pre>
             <h4>Status</h4>
             <pre class="response status">200 OK</pre>
               <h4>Body</h4>
               <pre class="response body">{
   &quot;resource&quot;: {
-    &quot;id&quot;: 264,
-    &quot;user_id&quot;: 106,
-    &quot;name&quot;: &quot;Vit.&quot;,
-    &quot;sign&quot;: &quot;❤&quot;,
-    &quot;deleted_at&quot;: null,
+    &quot;deleted_at&quot;: &quot;2024-02-01T16:53:20.797+08:00&quot;,
+    &quot;amount&quot;: 6083,
+    &quot;id&quot;: 210,
+    &quot;user_id&quot;: 99,
+    &quot;note&quot;: null,
+    &quot;tag_ids&quot;: [
+      257
+    ],
+    &quot;happened_at&quot;: &quot;2024-01-30T00:00:00.000+08:00&quot;,
     &quot;kind&quot;: &quot;expenses&quot;,
-    &quot;created_at&quot;: &quot;2024-02-01T16:53:20.955+08:00&quot;,
-    &quot;updated_at&quot;: &quot;2024-02-01T16:53:20.955+08:00&quot;
+    &quot;created_at&quot;: &quot;2024-02-01T16:53:20.794+08:00&quot;,
+    &quot;updated_at&quot;: &quot;2024-02-01T16:53:20.800+08:00&quot;,
+    &quot;happen_at&quot;: &quot;2024-01-30T00:00:00.000+08:00&quot;,
+    &quot;tags&quot;: [
+      {
+        &quot;id&quot;: 257,
+        &quot;user_id&quot;: 99,
+        &quot;name&quot;: &quot;Eaq.&quot;,
+        &quot;sign&quot;: &quot;😡&quot;,
+        &quot;deleted_at&quot;: null,
+        &quot;kind&quot;: &quot;expenses&quot;,
+        &quot;created_at&quot;: &quot;2024-02-01T16:53:20.790+08:00&quot;,
+        &quot;updated_at&quot;: &quot;2024-02-01T16:53:20.790+08:00&quot;
+      }
+    ]
   }
 }</pre>
       </div>
