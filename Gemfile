@@ -34,7 +34,7 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
-# gem "rack-cors"
+gem "rack-cors"
 
 # psych 安装 v5.1.2版本异常，相关issues: https://discuss.rubyonrails.org/t/cant-setup-rails-psych-yaml-issue/83968/10
 gem "psych", "4.0.0"
