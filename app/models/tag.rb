@@ -7,4 +7,5 @@ class Tag < ApplicationRecord
   validates :sign, presence: true
   validates :kind, presence: true
   belongs_to :user
+  
 end
