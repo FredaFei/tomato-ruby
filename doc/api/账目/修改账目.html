@@ -122,7 +122,7 @@ table th, table td {
             </thead>
             <tbody>
               <tr>
-                <td class="required">
+                <td>
                     <span class="name">amount</span>
                 </td>
                 <td>
@@ -130,7 +130,7 @@ table th, table td {
                 </td>
               </tr>
               <tr>
-                <td class="required">
+                <td>
                     <span class="name">kind</span>
                 </td>
                 <td>
@@ -138,7 +138,7 @@ table th, table td {
                 </td>
               </tr>
               <tr>
-                <td class="required">
+                <td>
                     <span class="name">happen_at</span>
                 </td>
                 <td>
@@ -146,7 +146,7 @@ table th, table td {
                 </td>
               </tr>
               <tr>
-                <td class="required">
+                <td>
                     <span class="name">tag_ids</span>
                 </td>
                 <td>
@@ -170,7 +170,7 @@ table th, table td {
                     <span class="name">resource[id]</span>
                 </td>
                 <td>
-                  <span class="description">Resource id</span>
+                  <span class="description">ID</span>
                 </td>
               </tr>
               <tr>
@@ -178,7 +178,7 @@ table th, table td {
                     <span class="name">resource[amount]</span>
                 </td>
                 <td>
-                  <span class="description">Resource amount</span>
+                  <span class="description">金额（单位：分）</span>
                 </td>
               </tr>
               <tr>
@@ -186,7 +186,7 @@ table th, table td {
                     <span class="name">resource[kind]</span>
                 </td>
                 <td>
-                  <span class="description">Resource kind</span>
+                  <span class="description">类型</span>
                 </td>
               </tr>
               <tr>
@@ -194,7 +194,7 @@ table th, table td {
                     <span class="name">resource[happen_at]</span>
                 </td>
                 <td>
-                  <span class="description">Resource happen at</span>
+                  <span class="description">发生时间</span>
                 </td>
               </tr>
               <tr>
@@ -202,7 +202,23 @@ table th, table td {
                     <span class="name">resource[tag_ids]</span>
                 </td>
                 <td>
-                  <span class="description">Resource tag ids</span>
+                  <span class="description">标签列表（只传ID）</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">resource[user_id]</span>
+                </td>
+                <td>
+                  <span class="description">用户ID</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">resource[deleted_at]</span>
+                </td>
+                <td>
+                  <span class="description">删除时间</span>
                 </td>
               </tr>
             </tbody>
@@ -212,14 +228,14 @@ table th, table td {
 
             <h4>Headers</h4>
             <pre class="request headers">Version: HTTP/1.0
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1NjYsImV4cCI6MTcxMzM2ODIxOX0.764UEMeas72Wd16YjUvm52fkQdK79cwVQ1CSeCBTPp4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2NjIsImV4cCI6MTcxMzM3MDkxMX0.zyGb1kXPneVrwdZURCECrnGDWvZKBrHaP5vG4KwVqvw
 Accept: application/json
 Content-Type: application/json
 Host: example.org
 Cookie: </pre>
 
           <h4>Route</h4>
-          <pre class="request route highlight">PATCH /api/v1/items/1113</pre>
+          <pre class="request route highlight">PATCH /api/v1/items/1419</pre>
 
 
             <h4>Body</h4>
@@ -235,10 +251,10 @@ X-Download-Options: noopen
 X-Permitted-Cross-Domain-Policies: none
 Referrer-Policy: strict-origin-when-cross-origin
 Content-Type: application/json; charset=utf-8
-ETag: W/&quot;c2e96f8597d0551589b081d7441a5e3a&quot;
+ETag: W/&quot;a12528fd2c9466ca339fef1a3ffe05df&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 00dfcae6-edaa-4e25-8346-b7c8ade83d63
-X-Runtime: 0.009133
+X-Request-Id: ef246578-1b3f-4713-8e31-fd911b3c500b
+X-Runtime: 0.009367
 vary: Accept, Origin
 Content-Length: 485</pre>
             <h4>Status</h4>
@@ -247,28 +263,28 @@ Content-Length: 485</pre>
               <pre class="response body">{
   &quot;resource&quot;: {
     &quot;amount&quot;: 101,
-    &quot;id&quot;: 1113,
-    &quot;user_id&quot;: 566,
+    &quot;id&quot;: 1419,
+    &quot;user_id&quot;: 662,
     &quot;note&quot;: null,
     &quot;tag_ids&quot;: [
-      1428
+      1680
     ],
     &quot;happened_at&quot;: &quot;2018-06-18T00:00:00.000+08:00&quot;,
     &quot;deleted_at&quot;: null,
     &quot;kind&quot;: &quot;expenses&quot;,
-    &quot;created_at&quot;: &quot;2024-04-17T21:36:59.245+08:00&quot;,
-    &quot;updated_at&quot;: &quot;2024-04-17T21:36:59.251+08:00&quot;,
+    &quot;created_at&quot;: &quot;2024-04-17T22:21:51.231+08:00&quot;,
+    &quot;updated_at&quot;: &quot;2024-04-17T22:21:51.240+08:00&quot;,
     &quot;happen_at&quot;: &quot;2018-06-18T00:00:00.000+08:00&quot;,
     &quot;tags&quot;: [
       {
-        &quot;id&quot;: 1428,
-        &quot;user_id&quot;: 566,
-        &quot;name&quot;: &quot;In .&quot;,
+        &quot;id&quot;: 1680,
+        &quot;user_id&quot;: 662,
+        &quot;name&quot;: &quot;Et .&quot;,
         &quot;sign&quot;: &quot;😡&quot;,
         &quot;deleted_at&quot;: null,
         &quot;kind&quot;: &quot;expenses&quot;,
-        &quot;created_at&quot;: &quot;2024-04-17T21:36:59.241+08:00&quot;,
-        &quot;updated_at&quot;: &quot;2024-04-17T21:36:59.241+08:00&quot;
+        &quot;created_at&quot;: &quot;2024-04-17T22:21:51.224+08:00&quot;,
+        &quot;updated_at&quot;: &quot;2024-04-17T22:21:51.224+08:00&quot;
       }
     ]
   }

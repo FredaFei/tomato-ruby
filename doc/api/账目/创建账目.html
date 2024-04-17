@@ -170,7 +170,7 @@ table th, table td {
                     <span class="name">resource[id]</span>
                 </td>
                 <td>
-                  <span class="description">Resource id</span>
+                  <span class="description">ID</span>
                 </td>
               </tr>
               <tr>
@@ -178,7 +178,7 @@ table th, table td {
                     <span class="name">resource[amount]</span>
                 </td>
                 <td>
-                  <span class="description">Resource amount</span>
+                  <span class="description">金额（单位：分）</span>
                 </td>
               </tr>
               <tr>
@@ -186,7 +186,7 @@ table th, table td {
                     <span class="name">resource[kind]</span>
                 </td>
                 <td>
-                  <span class="description">Resource kind</span>
+                  <span class="description">类型</span>
                 </td>
               </tr>
               <tr>
@@ -194,7 +194,7 @@ table th, table td {
                     <span class="name">resource[happen_at]</span>
                 </td>
                 <td>
-                  <span class="description">Resource happen at</span>
+                  <span class="description">发生时间</span>
                 </td>
               </tr>
               <tr>
@@ -202,7 +202,7 @@ table th, table td {
                     <span class="name">resource[tag_ids]</span>
                 </td>
                 <td>
-                  <span class="description">Resource tag ids</span>
+                  <span class="description">标签列表（只传ID）</span>
                 </td>
               </tr>
             </tbody>
@@ -212,7 +212,7 @@ table th, table td {
 
             <h4>Headers</h4>
             <pre class="request headers">Version: HTTP/1.0
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1NjQsImV4cCI6MTcxMzM2ODIxOX0.VX_8rYNBu4gYqjD4fr68upT9-QXZQvX5ZQYYG7wtf7Q
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2NjAsImV4cCI6MTcxMzM3MDkxMX0.ocCn6ukpnj-f_bxsWkBB5M_kPAoTrYIQNmA5i_JcwbU
 Accept: application/json
 Content-Type: application/json
 Host: example.org
@@ -223,7 +223,7 @@ Cookie: </pre>
 
 
             <h4>Body</h4>
-            <pre class="request body">{"amount":9900,"kind":"expenses","happen_at":"2020-10-30T00:00:00+08:00","tag_ids":[1425,1426]}</pre>
+            <pre class="request body">{"amount":9900,"kind":"expenses","happen_at":"2020-10-30T00:00:00+08:00","tag_ids":[1677,1678]}</pre>
 
 
             <h3>Response</h3>
@@ -235,51 +235,51 @@ X-Download-Options: noopen
 X-Permitted-Cross-Domain-Policies: none
 Referrer-Policy: strict-origin-when-cross-origin
 Content-Type: application/json; charset=utf-8
-ETag: W/&quot;31b8f237a23eb39934836df358bbd1c0&quot;
+ETag: W/&quot;1c978051f2e1edf38e4419dde2e84ac4&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: a5c05995-5db0-4389-b2de-e6b76fd95665
-X-Runtime: 0.012558
+X-Request-Id: 22e57458-e92b-482d-a08e-05337af9290e
+X-Runtime: 0.011193
 vary: Accept, Origin
-Content-Length: 669</pre>
+Content-Length: 671</pre>
             <h4>Status</h4>
             <pre class="response status">200 OK</pre>
               <h4>Body</h4>
               <pre class="response body">{
   &quot;resource&quot;: {
-    &quot;id&quot;: 1111,
-    &quot;user_id&quot;: 564,
+    &quot;id&quot;: 1417,
+    &quot;user_id&quot;: 660,
     &quot;amount&quot;: 9900,
     &quot;note&quot;: null,
     &quot;tag_ids&quot;: [
-      1425,
-      1426
+      1677,
+      1678
     ],
     &quot;happened_at&quot;: &quot;2020-10-30T00:00:00.000+08:00&quot;,
     &quot;deleted_at&quot;: null,
     &quot;kind&quot;: &quot;expenses&quot;,
-    &quot;created_at&quot;: &quot;2024-04-17T21:36:59.197+08:00&quot;,
-    &quot;updated_at&quot;: &quot;2024-04-17T21:36:59.197+08:00&quot;,
+    &quot;created_at&quot;: &quot;2024-04-17T22:21:51.183+08:00&quot;,
+    &quot;updated_at&quot;: &quot;2024-04-17T22:21:51.183+08:00&quot;,
     &quot;happen_at&quot;: &quot;2020-10-30T00:00:00.000+08:00&quot;,
     &quot;tags&quot;: [
       {
-        &quot;id&quot;: 1426,
-        &quot;user_id&quot;: 564,
-        &quot;name&quot;: &quot;Bla.&quot;,
-        &quot;sign&quot;: &quot;❤&quot;,
+        &quot;id&quot;: 1678,
+        &quot;user_id&quot;: 660,
+        &quot;name&quot;: &quot;Sae.&quot;,
+        &quot;sign&quot;: &quot;😀&quot;,
         &quot;deleted_at&quot;: null,
         &quot;kind&quot;: &quot;expenses&quot;,
-        &quot;created_at&quot;: &quot;2024-04-17T21:36:59.186+08:00&quot;,
-        &quot;updated_at&quot;: &quot;2024-04-17T21:36:59.186+08:00&quot;
+        &quot;created_at&quot;: &quot;2024-04-17T22:21:51.173+08:00&quot;,
+        &quot;updated_at&quot;: &quot;2024-04-17T22:21:51.173+08:00&quot;
       },
       {
-        &quot;id&quot;: 1425,
-        &quot;user_id&quot;: 564,
-        &quot;name&quot;: &quot;Ab .&quot;,
-        &quot;sign&quot;: &quot;❤&quot;,
+        &quot;id&quot;: 1677,
+        &quot;user_id&quot;: 660,
+        &quot;name&quot;: &quot;Ver.&quot;,
+        &quot;sign&quot;: &quot;😀&quot;,
         &quot;deleted_at&quot;: null,
         &quot;kind&quot;: &quot;expenses&quot;,
-        &quot;created_at&quot;: &quot;2024-04-17T21:36:59.184+08:00&quot;,
-        &quot;updated_at&quot;: &quot;2024-04-17T21:36:59.184+08:00&quot;
+        &quot;created_at&quot;: &quot;2024-04-17T22:21:51.171+08:00&quot;,
+        &quot;updated_at&quot;: &quot;2024-04-17T22:21:51.171+08:00&quot;
       }
     ]
   }
