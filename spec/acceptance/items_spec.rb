@@ -87,8 +87,6 @@ resource "账目" do
       response_field :user_id, "用户ID"
       response_field :deleted_at, "删除时间"
     end
-    # tag = create :tag, user: current_user
-    # item = create :item, amount: 100, kind: "expenses", tag_ids: [tag.id], happened_at: "2018-06-18T00:00:00+08:00", user: current_user
     let (:tag){ create :tag, user: current_user }
     let (:item) { create :item, amount: 100, tag_ids: [tag.id], happened_at: "2018-06-18T00:00:00+08:00", user: current_user } 
     let (:id) { item.id }
