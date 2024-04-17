@@ -2,10 +2,10 @@ require "rails_helper"
 require "rspec_api_documentation/dsl"
 
 resource "账目" do
+  authentication :basic, :auth
   let(:current_user) { create :user }
   let(:auth) { "Bearer #{current_user.generate_jwt}" }
   get "/api/v1/items" do
-    authentication :basic, :auth
     parameter :page, "页码"
     parameter :happened_after, "发生时间的起点"
     parameter :happened_before, "发生时间的终点"
@@ -15,7 +15,7 @@ resource "账目" do
     end
     let(:happened_after) { DateTime.now - 10.days }
     let(:happened_before) { DateTime.now }
-    example "获取账目" do
+    example "获取账目列表" do
       tag = create :tag, user: current_user
       create_list :item, Item.default_per_page - 3, tag_ids: [tag.id], user: current_user, happen_at: Time.now - 15.days
       create_list :item, 3, tag_ids: [tag.id], user: current_user, happen_at: Time.now - 5.days
@@ -27,7 +27,6 @@ resource "账目" do
   end
 
   post "/api/v1/items" do
-    authentication :basic, :auth
     parameter :amount, "金额（单位：分）", required: true
     parameter :kind, "类型", required: true, enum: ["expenses", "income"]
     parameter :happen_at, "发生时间", required: true
@@ -53,9 +52,51 @@ resource "账目" do
     end
   end
 
-  delete "/api/v1/items/:id" do
-    authentication :basic, :auth
+  get "/api/v1/items/:id" do
+    let (:tag){ create :tag, user: current_user }
+    let (:item) { create :item, tag_ids: [tag.id], happened_at: "2018-06-18T00:00:00+08:00", user: current_user } 
+    let (:id) { item.id }
+    with_options :scope => :resource do
+      response_field :id
+      response_field :amount
+      response_field :kind
+      response_field :happen_at
+      response_field :tag_ids
+    end
+    example "获取账目详情" do
+      do_request
+      expect(status).to eq 200
+      json = JSON.parse response_body
+      expect(json['resource']['id']).to eq item.id
+    end
+  end
 
+  patch "/api/v1/items/:id" do
+    parameter :amount, "金额（单位：分）", required: true
+    parameter :kind, "类型", required: true, enum: ["expenses", "income"]
+    parameter :happen_at, "发生时间", required: true
+    parameter :tag_ids, "标签列表（只传ID）", required: true
+    with_options :scope => :resource do
+      response_field :id
+      response_field :amount
+      response_field :kind
+      response_field :happen_at
+      response_field :tag_ids
+    end
+    # tag = create :tag, user: current_user
+    # item = create :item, amount: 100, kind: "expenses", tag_ids: [tag.id], happened_at: "2018-06-18T00:00:00+08:00", user: current_user
+    let (:tag){ create :tag, user: current_user }
+    let (:item) { create :item, amount: 100, tag_ids: [tag.id], happened_at: "2018-06-18T00:00:00+08:00", user: current_user } 
+    let (:id) { item.id }
+    let (:amount) { 101 }
+    example "修改账目" do
+      do_request
+      expect(status).to eq 200
+      json = JSON.parse response_body
+      expect(json["resource"]["amount"]).to eq amount
+    end
+  end
+  delete "/api/v1/items/:id" do
     let (:item) { create :item, user: current_user }
     let (:id) { item.id }
 
@@ -66,7 +107,6 @@ resource "账目" do
   end
 
   get "/api/v1/items/summary" do
-    authentication :basic, :auth
     parameter :happened_after, "时间起点", required: true
     parameter :happened_before, "时间终点", required: true
     parameter :kind, "账目类型", enum: ["expenses", "income"], required: true

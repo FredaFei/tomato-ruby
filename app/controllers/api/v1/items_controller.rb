@@ -13,6 +13,12 @@ class Api::V1::ItemsController < ApplicationController
     } }
   end
 
+  def show
+    item = Item.find params[:id]
+    return head :forbidden unless item.user_id == request.env['current_user_id']
+    render json: {resource: item}
+  end
+
   def create
     item = Item.new params.permit(:amount, :happen_at, :happened_at, :kind, tag_ids: [])
     item.user_id = request.env["current_user_id"]
@@ -20,6 +26,16 @@ class Api::V1::ItemsController < ApplicationController
       render json: { resource: item }
     else
       render json: { errors: item.errors }, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    item = Item.find params[:id]
+    item.update params.permit(:amount, :happen_at, :happened_at, :kind, tag_ids: [])
+    if item.errors.empty?
+      render json: {resource: item}
+    else
+      render json: {errors: item.errors}, status: :unprocessable_entity
     end
   end
 

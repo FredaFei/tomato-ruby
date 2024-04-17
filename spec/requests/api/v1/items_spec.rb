@@ -115,6 +115,61 @@ RSpec.describe "Items", type: :request do
       expect(json["errors"]["happen_at"][0]).to be_a String
     end
   end
+  describe "获取账目" do
+    it "未登录获取账目" do
+      item = create :item
+      get "/api/v1/items/#{item.id}"
+      expect(response).to have_http_status(401)
+    end
+    it "登录后获取账目" do
+      item = create :item
+      get "/api/v1/items/#{item.id}", headers: item.user.generate_auth_header
+      expect(response).to have_http_status(200)
+      json = JSON.parse response.body
+      expect(json["resource"]["id"]).to eq item.id
+    end
+    it "登录后获取不属于自己的账目" do
+      user = create :user
+      another_user = create :user
+      item = create :item, user: another_user
+      get "/api/v1/items/#{item.id}", headers: user.generate_auth_header
+      expect(response).to have_http_status(403)
+    end
+  end
+  describe "更新账目" do
+    it "未登录修改账目" do
+      tag1 = create :tag
+      item = create :item
+      patch "/api/v1/items/#{item.id}", params: { amount: 99, tag_ids: [tag1.id],
+                                                  happen_at: "2018-01-01T00:00:00+08:00",
+                                                  kind: 'income' }
+      expect(response).to have_http_status 401
+    end
+    it "登录后修改账目" do
+      tag1 = create :tag
+      item = create :item, kind: 'expenses', amount: 100, tag_ids: [tag1.id]
+      expect {
+        patch "/api/v1/items/#{item.id}", params: { amount: 99, tag_ids: [tag1.id],
+                                        happen_at: "2018-01-01T00:00:00+08:00",
+                                        kind: 'income' },
+                              headers: item.user.generate_auth_header
+      }
+      expect(response).to have_http_status 200
+      json = JSON.parse response.body
+      expect(json["resource"]["amount"]).to eq 99
+      expect(json["resource"]["happen_at"]).to eq "2018-01-01T00:00:00.000+08:00"
+      expect(json["resource"]["kind"]).to eq "income"
+    end
+    it "登录后部分修改账目" do
+      item = create :item, kind: 'expenses', amount: 100
+      patch "/api/v1/items/#{item.id}", params: {kind: 'income'}, headers: item.user.generate_auth_header
+      expect(response).to have_http_status 200
+      json = JSON.parse response.body
+      expect(json["resource"]["kind"]).to eq "income"
+      expect(json["resource"]["amount"]).to eq 100
+    end
+  end
+
   describe "获取余额" do
     it "未登录" do
       get "/api/v1/items/balance?happen_after=2018-01-01&happen_before=2019-01-01"
