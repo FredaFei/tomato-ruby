@@ -109,36 +109,9 @@ table th, table td {
       <h1>账目 API</h1>
 
       <div class="article">
-        <h2>获取收支信息</h2>
-        <h3>GET /api/v1/items/balance</h3>
+        <h2>获取账目详情</h2>
+        <h3>GET /api/v1/items/:id</h3>
 
-          <h3>Parameters</h3>
-          <table class="parameters table table-striped table-bordered table-condensed">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="required">
-                    <span class="name">happened_after</span>
-                </td>
-                <td>
-                  <span class="description">时间起点</span>
-                </td>
-              </tr>
-              <tr>
-                <td class="required">
-                    <span class="name">happened_before</span>
-                </td>
-                <td>
-                  <span class="description">时间终点</span>
-                </td>
-              </tr>
-            </tbody>
-          </table>
 
           <h3>Response Fields</h3>
           <table class="response-fields table table-striped table-bordered table-condensed">
@@ -151,26 +124,42 @@ table th, table td {
             <tbody>
               <tr>
                 <td>
-                    <span class="name">balance</span>
+                    <span class="name">resource[id]</span>
                 </td>
                 <td>
-                  <span class="description">净收入（单位：分）</span>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                    <span class="name">expenses</span>
-                </td>
-                <td>
-                  <span class="description">支出（单位：分）</span>
+                  <span class="description">Resource id</span>
                 </td>
               </tr>
               <tr>
                 <td>
-                    <span class="name">income</span>
+                    <span class="name">resource[amount]</span>
                 </td>
                 <td>
-                  <span class="description">收入（单位：分）</span>
+                  <span class="description">Resource amount</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">resource[kind]</span>
+                </td>
+                <td>
+                  <span class="description">Resource kind</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">resource[happen_at]</span>
+                </td>
+                <td>
+                  <span class="description">Resource happen at</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    <span class="name">resource[tag_ids]</span>
+                </td>
+                <td>
+                  <span class="description">Resource tag ids</span>
                 </td>
               </tr>
             </tbody>
@@ -180,18 +169,15 @@ table th, table td {
 
             <h4>Headers</h4>
             <pre class="request headers">Version: HTTP/1.0
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1NzEsImV4cCI6MTcxMzM2ODIxOX0.ydvk3sOAblkE4xJ48ohsFdMwIlGKZBq5A5nxcMdbhKo
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1NjUsImV4cCI6MTcxMzM2ODIxOX0.YNLXmoOqRnMAFODyj-emhl1rmfaP63uekj1KUcvivEw
 Accept: application/json
 Content-Type: application/json
 Host: example.org
 Cookie: </pre>
 
           <h4>Route</h4>
-          <pre class="request route highlight">GET /api/v1/items/balance?happened_after=2018-01-01&amp;happened_before=2019-01-01</pre>
+          <pre class="request route highlight">GET /api/v1/items/1112</pre>
 
-            <h4>Query Parameters</h4>
-            <pre class="request query_parameters highlight">happened_after: 2018-01-01
-happened_before: 2019-01-01</pre>
 
 
 
@@ -204,19 +190,43 @@ X-Download-Options: noopen
 X-Permitted-Cross-Domain-Policies: none
 Referrer-Policy: strict-origin-when-cross-origin
 Content-Type: application/json; charset=utf-8
-ETag: W/&quot;92dcece23596914356bd022aebf8b139&quot;
+ETag: W/&quot;83be1236ffac984605233f4cce4a9554&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 34e5ccb2-d860-4116-b499-c31caf48456a
-X-Runtime: 0.002694
+X-Request-Id: 9992fc4b-f839-4373-b6bc-18bd6939a2a9
+X-Runtime: 0.003383
 vary: Accept, Origin
-Content-Length: 41</pre>
+Content-Length: 486</pre>
             <h4>Status</h4>
             <pre class="response status">200 OK</pre>
               <h4>Body</h4>
               <pre class="response body">{
-  &quot;income&quot;: 400,
-  &quot;expenses&quot;: 400,
-  &quot;balance&quot;: 0
+  &quot;resource&quot;: {
+    &quot;id&quot;: 1112,
+    &quot;user_id&quot;: 565,
+    &quot;amount&quot;: 6865,
+    &quot;note&quot;: null,
+    &quot;tag_ids&quot;: [
+      1427
+    ],
+    &quot;happened_at&quot;: &quot;2018-06-18T00:00:00.000+08:00&quot;,
+    &quot;deleted_at&quot;: null,
+    &quot;kind&quot;: &quot;expenses&quot;,
+    &quot;created_at&quot;: &quot;2024-04-17T21:36:59.228+08:00&quot;,
+    &quot;updated_at&quot;: &quot;2024-04-17T21:36:59.228+08:00&quot;,
+    &quot;happen_at&quot;: &quot;2018-06-18T00:00:00.000+08:00&quot;,
+    &quot;tags&quot;: [
+      {
+        &quot;id&quot;: 1427,
+        &quot;user_id&quot;: 565,
+        &quot;name&quot;: &quot;Qui.&quot;,
+        &quot;sign&quot;: &quot;😡&quot;,
+        &quot;deleted_at&quot;: null,
+        &quot;kind&quot;: &quot;expenses&quot;,
+        &quot;created_at&quot;: &quot;2024-04-17T21:36:59.208+08:00&quot;,
+        &quot;updated_at&quot;: &quot;2024-04-17T21:36:59.208+08:00&quot;
+      }
+    ]
+  }
 }</pre>
       </div>
     </div>

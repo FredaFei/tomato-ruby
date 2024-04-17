@@ -109,7 +109,7 @@ table th, table td {
       <h1>账目 API</h1>
 
       <div class="article">
-        <h2>获取账目</h2>
+        <h2>获取账目列表</h2>
         <h3>GET /api/v1/items</h3>
 
           <h3>Parameters</h3>
@@ -180,18 +180,18 @@ table th, table td {
 
             <h4>Headers</h4>
             <pre class="request headers">Version: HTTP/1.0
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxOTMsImV4cCI6MTcwNjg4NTgwNH0.ZdQPDAlsyy7efYYat0AeZKc2oDVpyjoXguWNiMZSHtM
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1NjMsImV4cCI6MTcxMzM2ODIxOX0.KtW3Rsh_qLx2idGdQkyLFafU9CYPCzqIfOhd4CisPeE
 Accept: application/json
 Content-Type: application/json
 Host: example.org
 Cookie: </pre>
 
           <h4>Route</h4>
-          <pre class="request route highlight">GET /api/v1/items?happened_after=2024-01-23T20%3A56%3A44%2B08%3A00&amp;happened_before=2024-02-02T20%3A56%3A44%2B08%3A00</pre>
+          <pre class="request route highlight">GET /api/v1/items?happened_after=2024-04-07T21%3A36%3A59%2B08%3A00&amp;happened_before=2024-04-17T21%3A36%3A59%2B08%3A00</pre>
 
             <h4>Query Parameters</h4>
-            <pre class="request query_parameters highlight">happened_after: 2024-01-23T20:56:44+08:00
-happened_before: 2024-02-02T20:56:44+08:00</pre>
+            <pre class="request query_parameters highlight">happened_after: 2024-04-07T21:36:59+08:00
+happened_before: 2024-04-17T21:36:59+08:00</pre>
 
 
 
@@ -204,95 +204,95 @@ X-Download-Options: noopen
 X-Permitted-Cross-Domain-Policies: none
 Referrer-Policy: strict-origin-when-cross-origin
 Content-Type: application/json; charset=utf-8
-ETag: W/&quot;179d16f80072c4f11528110f30acca8d&quot;
+ETag: W/&quot;194945b9a3fcc84fa5449db0c2741f06&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 474776fb-4388-40b0-a432-c29cdf678faa
-X-Runtime: 0.023255
+X-Request-Id: 13ba4634-0662-4095-8af0-a652c3caf589
+X-Runtime: 0.025292
 vary: Accept, Origin
-Content-Length: 1471</pre>
+Content-Length: 1477</pre>
             <h4>Status</h4>
             <pre class="response status">200 OK</pre>
               <h4>Body</h4>
               <pre class="response body">{
   &quot;resources&quot;: [
     {
-      &quot;id&quot;: 389,
-      &quot;user_id&quot;: 193,
-      &quot;amount&quot;: 2924,
+      &quot;id&quot;: 1108,
+      &quot;user_id&quot;: 563,
+      &quot;amount&quot;: 9479,
       &quot;note&quot;: null,
       &quot;tag_ids&quot;: [
-        507
+        1424
       ],
-      &quot;happened_at&quot;: &quot;2024-01-28T20:56:44.887+08:00&quot;,
+      &quot;happened_at&quot;: &quot;2024-04-12T21:36:59.122+08:00&quot;,
       &quot;deleted_at&quot;: null,
       &quot;kind&quot;: &quot;expenses&quot;,
-      &quot;created_at&quot;: &quot;2024-02-02T20:56:44.888+08:00&quot;,
-      &quot;updated_at&quot;: &quot;2024-02-02T20:56:44.888+08:00&quot;,
-      &quot;happen_at&quot;: &quot;2024-01-28T20:56:44.887+08:00&quot;,
+      &quot;created_at&quot;: &quot;2024-04-17T21:36:59.123+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-04-17T21:36:59.123+08:00&quot;,
+      &quot;happen_at&quot;: &quot;2024-04-12T21:36:59.122+08:00&quot;,
       &quot;tags&quot;: [
         {
-          &quot;id&quot;: 507,
-          &quot;user_id&quot;: 193,
-          &quot;name&quot;: &quot;Eos.&quot;,
-          &quot;sign&quot;: &quot;😡&quot;,
+          &quot;id&quot;: 1424,
+          &quot;user_id&quot;: 563,
+          &quot;name&quot;: &quot;Sus.&quot;,
+          &quot;sign&quot;: &quot;❤&quot;,
           &quot;deleted_at&quot;: null,
           &quot;kind&quot;: &quot;expenses&quot;,
-          &quot;created_at&quot;: &quot;2024-02-02T20:56:44.817+08:00&quot;,
-          &quot;updated_at&quot;: &quot;2024-02-02T20:56:44.817+08:00&quot;
+          &quot;created_at&quot;: &quot;2024-04-17T21:36:59.048+08:00&quot;,
+          &quot;updated_at&quot;: &quot;2024-04-17T21:36:59.048+08:00&quot;
         }
       ]
     },
     {
-      &quot;id&quot;: 390,
-      &quot;user_id&quot;: 193,
-      &quot;amount&quot;: 8444,
+      &quot;id&quot;: 1109,
+      &quot;user_id&quot;: 563,
+      &quot;amount&quot;: 3112,
       &quot;note&quot;: null,
       &quot;tag_ids&quot;: [
-        507
+        1424
       ],
-      &quot;happened_at&quot;: &quot;2024-01-28T20:56:44.887+08:00&quot;,
+      &quot;happened_at&quot;: &quot;2024-04-12T21:36:59.122+08:00&quot;,
       &quot;deleted_at&quot;: null,
       &quot;kind&quot;: &quot;expenses&quot;,
-      &quot;created_at&quot;: &quot;2024-02-02T20:56:44.891+08:00&quot;,
-      &quot;updated_at&quot;: &quot;2024-02-02T20:56:44.891+08:00&quot;,
-      &quot;happen_at&quot;: &quot;2024-01-28T20:56:44.887+08:00&quot;,
+      &quot;created_at&quot;: &quot;2024-04-17T21:36:59.126+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-04-17T21:36:59.126+08:00&quot;,
+      &quot;happen_at&quot;: &quot;2024-04-12T21:36:59.122+08:00&quot;,
       &quot;tags&quot;: [
         {
-          &quot;id&quot;: 507,
-          &quot;user_id&quot;: 193,
-          &quot;name&quot;: &quot;Eos.&quot;,
-          &quot;sign&quot;: &quot;😡&quot;,
+          &quot;id&quot;: 1424,
+          &quot;user_id&quot;: 563,
+          &quot;name&quot;: &quot;Sus.&quot;,
+          &quot;sign&quot;: &quot;❤&quot;,
           &quot;deleted_at&quot;: null,
           &quot;kind&quot;: &quot;expenses&quot;,
-          &quot;created_at&quot;: &quot;2024-02-02T20:56:44.817+08:00&quot;,
-          &quot;updated_at&quot;: &quot;2024-02-02T20:56:44.817+08:00&quot;
+          &quot;created_at&quot;: &quot;2024-04-17T21:36:59.048+08:00&quot;,
+          &quot;updated_at&quot;: &quot;2024-04-17T21:36:59.048+08:00&quot;
         }
       ]
     },
     {
-      &quot;id&quot;: 391,
-      &quot;user_id&quot;: 193,
-      &quot;amount&quot;: 2901,
+      &quot;id&quot;: 1110,
+      &quot;user_id&quot;: 563,
+      &quot;amount&quot;: 8368,
       &quot;note&quot;: null,
       &quot;tag_ids&quot;: [
-        507
+        1424
       ],
-      &quot;happened_at&quot;: &quot;2024-01-28T20:56:44.887+08:00&quot;,
+      &quot;happened_at&quot;: &quot;2024-04-12T21:36:59.122+08:00&quot;,
       &quot;deleted_at&quot;: null,
       &quot;kind&quot;: &quot;expenses&quot;,
-      &quot;created_at&quot;: &quot;2024-02-02T20:56:44.893+08:00&quot;,
-      &quot;updated_at&quot;: &quot;2024-02-02T20:56:44.893+08:00&quot;,
-      &quot;happen_at&quot;: &quot;2024-01-28T20:56:44.887+08:00&quot;,
+      &quot;created_at&quot;: &quot;2024-04-17T21:36:59.128+08:00&quot;,
+      &quot;updated_at&quot;: &quot;2024-04-17T21:36:59.128+08:00&quot;,
+      &quot;happen_at&quot;: &quot;2024-04-12T21:36:59.122+08:00&quot;,
       &quot;tags&quot;: [
         {
-          &quot;id&quot;: 507,
-          &quot;user_id&quot;: 193,
-          &quot;name&quot;: &quot;Eos.&quot;,
-          &quot;sign&quot;: &quot;😡&quot;,
+          &quot;id&quot;: 1424,
+          &quot;user_id&quot;: 563,
+          &quot;name&quot;: &quot;Sus.&quot;,
+          &quot;sign&quot;: &quot;❤&quot;,
           &quot;deleted_at&quot;: null,
           &quot;kind&quot;: &quot;expenses&quot;,
-          &quot;created_at&quot;: &quot;2024-02-02T20:56:44.817+08:00&quot;,
-          &quot;updated_at&quot;: &quot;2024-02-02T20:56:44.817+08:00&quot;
+          &quot;created_at&quot;: &quot;2024-04-17T21:36:59.048+08:00&quot;,
+          &quot;updated_at&quot;: &quot;2024-04-17T21:36:59.048+08:00&quot;
         }
       ]
     }
