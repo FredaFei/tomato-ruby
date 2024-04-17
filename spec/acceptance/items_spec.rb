@@ -32,11 +32,11 @@ resource "账目" do
     parameter :happen_at, "发生时间", required: true
     parameter :tag_ids, "标签列表（只传ID）", required: true
     with_options :scope => :resource do
-      response_field :id
-      response_field :amount
-      response_field :kind
-      response_field :happen_at
-      response_field :tag_ids
+      response_field :id, 'ID'
+      response_field :amount, "金额（单位：分）"
+      response_field :kind, "类型", enum: ["expenses", "income"]
+      response_field :happen_at, "发生时间"
+      response_field :tag_ids, "标签列表（只传ID）"
     end
     let(:amount) { 9900 }
     let(:kind) { "expenses" }
@@ -57,11 +57,13 @@ resource "账目" do
     let (:item) { create :item, tag_ids: [tag.id], happened_at: "2018-06-18T00:00:00+08:00", user: current_user } 
     let (:id) { item.id }
     with_options :scope => :resource do
-      response_field :id
-      response_field :amount
-      response_field :kind
-      response_field :happen_at
-      response_field :tag_ids
+      response_field :id, 'ID'
+      response_field :amount, "金额（单位：分）"
+      response_field :kind, "类型"
+      response_field :happen_at, "发生时间"
+      response_field :tag_ids, "标签列表（只传ID）"
+      response_field :user_id, "用户ID"
+      response_field :deleted_at, "删除时间"
     end
     example "获取账目详情" do
       do_request
@@ -72,16 +74,18 @@ resource "账目" do
   end
 
   patch "/api/v1/items/:id" do
-    parameter :amount, "金额（单位：分）", required: true
-    parameter :kind, "类型", required: true, enum: ["expenses", "income"]
-    parameter :happen_at, "发生时间", required: true
-    parameter :tag_ids, "标签列表（只传ID）", required: true
+    parameter :amount, "金额（单位：分）"
+    parameter :kind, "类型", enum: ["expenses", "income"]
+    parameter :happen_at, "发生时间"
+    parameter :tag_ids, "标签列表（只传ID）"
     with_options :scope => :resource do
-      response_field :id
-      response_field :amount
-      response_field :kind
-      response_field :happen_at
-      response_field :tag_ids
+      response_field :id, 'ID'
+      response_field :amount, "金额（单位：分）"
+      response_field :kind, "类型", enum: ["expenses", "income"]
+      response_field :happen_at, "发生时间"
+      response_field :tag_ids, "标签列表（只传ID）"
+      response_field :user_id, "用户ID"
+      response_field :deleted_at, "删除时间"
     end
     # tag = create :tag, user: current_user
     # item = create :item, amount: 100, kind: "expenses", tag_ids: [tag.id], happened_at: "2018-06-18T00:00:00+08:00", user: current_user
