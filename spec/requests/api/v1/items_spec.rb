@@ -170,6 +170,32 @@ RSpec.describe "Items", type: :request do
     end
   end
 
+  describe "删除账目" do
+    it "未登录删除账目" do
+      user = create :user
+      item = create :item, user: user
+      delete "/api/v1/items/#{item.id}"
+      expect(response).to have_http_status(401)
+    end
+    it "登录后删除账目" do
+      user = create :user
+      tag = create :tag, user: user
+      item = create :item, tag_ids: [tag1.id], user: user
+      delete "/api/v1/items/#{item.id}", headers: user.generate_auth_header
+      expect(response).to have_http_status(200)
+      item.reload
+      expect(tag.deleted_at).not_to eq nil
+    end
+    it "登录后删除别人的账目" do
+      user = create :user
+      other = create :user
+      tag = create :tag, user: user
+      item = create :item, tag_ids: [tag1.id], user: other
+      delete "/api/v1/items/#{item.id}", headers: user.generate_auth_header
+      expect(response).to have_http_status(403)
+    end
+  end
+
   describe "获取余额" do
     it "未登录" do
       get "/api/v1/items/balance?happen_after=2018-01-01&happen_before=2019-01-01"
