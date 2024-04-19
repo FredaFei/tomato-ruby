@@ -1,4 +1,7 @@
 class Api::V1::ItemsController < ApplicationController
+  before_action :must_sign_in
+  before_action :set_item, only: [:show, :update, :destroy]
+
   def index
     current_user_id = current_user.id
     return head :unauthorized if current_user_id.nil?
@@ -13,12 +16,6 @@ class Api::V1::ItemsController < ApplicationController
     } }
   end
 
-  def show
-    item = Item.find params[:id]
-    return head :forbidden unless item.user_id == current_user.id
-    render json: {resource: item}
-  end
-
   def create
     item = Item.new params.permit(:amount, :happen_at, :happened_at, :kind, :note, tag_ids: [])
     item.user_id = current_user.id
@@ -29,27 +26,30 @@ class Api::V1::ItemsController < ApplicationController
     end
   end
 
+  def show
+    return head :forbidden unless @item.user_id == current_user.id
+    render json: {resource: @item}
+  end
+
   def update
-    item = Item.find params[:id]
-    item.update params.permit(:amount, :happen_at, :happened_at, :kind, :note, tag_ids: [])
-    if item.errors.empty?
-      render json: {resource: item}
+    @item.update(item_params)
+    if @item.errors.empty?
+      render json: {resource: @item}
     else
-      render json: {errors: item.errors}, status: :unprocessable_entity
+      render json: {errors: @item.errors}, status: :unprocessable_entity
     end
   end
 
   def destroy
-    item = Item.find params[:id]
-    return head :forbidden unless item.user_id == current_user.id
-    item.deleted_at = Time.now
-    if item.save
+    return head :forbidden unless @item.user_id == current_user.id
+    @item.deleted_at = Time.now
+    if @item.save
       return head :ok
     else
-      render json: { errors: item.errors }, status: :unprocessable_entity
+      render json: { errors: @item.errors }, status: :unprocessable_entity
     end
   end
-
+  
   def balance
     current_user_id = current_user.id
     return head :unauthorized if current_user_id.nil?
@@ -118,5 +118,13 @@ class Api::V1::ItemsController < ApplicationController
 
   def end_time
     datetime_with_zone(params[:happen_before].presence || params[:happened_before])
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  def item_params
+    params.permit(:amount, :happen_at, :happened_at, :kind, :note, tag_ids: [])
   end
 end

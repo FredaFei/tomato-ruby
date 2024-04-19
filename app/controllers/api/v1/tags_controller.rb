@@ -1,4 +1,7 @@
 class Api::V1::TagsController < ApplicationController
+  before_action :must_sign_in
+  before_action :set_tag, only: [:show, :update, :destroy]
+
   def index
     return render status: 401 if current_user.nil?
     tags = Tag.where(user_id: current_user.id)
@@ -11,13 +14,12 @@ class Api::V1::TagsController < ApplicationController
     }}
   end
   def show
-    tag = Tag.find params[:id]
-    return head :forbidden unless tag.user_id == current_user.id
-    render json: {resource: tag}
+    return head :forbidden unless @tag.user_id == current_user.id
+    render json: {resource: @tag}
   end
+ 
   def create
     return render status: 401 if current_user.nil?
-
     tag = Tag.new params.permit(:name, :sign, :kind)
     tag.user = current_user
     if tag.save
@@ -26,30 +28,39 @@ class Api::V1::TagsController < ApplicationController
       render json: {errors: tag.errors}, status: :unprocessable_entity
     end
   end
+
   def update
-    tag = Tag.find params[:id]
-    tag.update params.permit(:name, :sign)
-    if tag.errors.empty?
-      render json: {resource: tag}
+    @tag.update(tag_params)
+    if @tag.errors.empty?
+      render json: {resource: @tag}
     else
-      render json: {errors: tag.errors}, status: :unprocessable_entity
+      render json: {errors: @tag.errors}, status: :unprocessable_entity
     end
   end
+  
   def destroy
-    tag = Tag.find params[:id]
-    return head :forbidden unless tag.user_id == current_user.id
-    tag.deleted_at = Time.now
+    return head :forbidden unless @tag.user_id == current_user.id
+    @tag.deleted_at = Time.now
     ActiveRecord::Base.transaction do
       begin
         if params[:with_items] == 'true'
-          Item.where('tag_ids && ARRAY[?]::bigint[]', [tag.id])
-              .update!(deleted_at: Time.now)
+          Item.where('tag_ids && ARRAY[?]::bigint[]', [@tag.id]).update!(deleted_at: Time.now)
         end
-        tag.save!
+        @tag.save!
       rescue
         return head 422
       end
-      head :ok
     end
+    head :ok
+  end
+
+  private
+
+  def set_tag
+    @tag = Tag.find(params[:id])
+  end
+
+  def tag_params
+    params.permit(:name, :sign, :kind)
   end
 end
