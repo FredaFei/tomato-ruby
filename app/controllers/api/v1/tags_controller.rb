@@ -49,7 +49,7 @@ class Api::V1::TagsController < ApplicationController
       rescue
         return head 422
       end
-      head 200
+      head :ok
     end
   end
 end

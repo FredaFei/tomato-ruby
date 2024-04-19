@@ -44,7 +44,7 @@ class Api::V1::ItemsController < ApplicationController
     return head :forbidden unless item.user_id == current_user.id
     item.deleted_at = Time.now
     if item.save
-      return head 200
+      return head :ok
     else
       render json: { errors: item.errors }, status: :unprocessable_entity
     end
