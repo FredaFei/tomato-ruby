@@ -1,6 +1,5 @@
 class Api::V1::TagsController < ApplicationController
   def index
-    current_user = User.find request.env['current_user_id']
     return render status: 401 if current_user.nil?
     tags = Tag.where(user_id: current_user.id)
     tags = tags.where(kind: params[:kind]) unless params[:kind].nil?
@@ -13,11 +12,10 @@ class Api::V1::TagsController < ApplicationController
   end
   def show
     tag = Tag.find params[:id]
-    return head :forbidden unless tag.user_id == request.env['current_user_id']
+    return head :forbidden unless tag.user_id == current_user.id
     render json: {resource: tag}
   end
   def create
-    current_user = User.find request.env['current_user_id']
     return render status: 401 if current_user.nil?
 
     tag = Tag.new params.permit(:name, :sign, :kind)
@@ -39,7 +37,7 @@ class Api::V1::TagsController < ApplicationController
   end
   def destroy
     tag = Tag.find params[:id]
-    return head :forbidden unless tag.user_id == request.env['current_user_id']
+    return head :forbidden unless tag.user_id == current_user.id
     tag.deleted_at = Time.now
     ActiveRecord::Base.transaction do
       begin

@@ -3,4 +3,10 @@ class ApplicationController < ActionController::API
     return nil if str.nil?
     Time.zone.parse(str)
   end
+  
+  private
+
+  def current_user
+    @current_user ||= User.find(request.env["current_user_id"])
+  end
 end

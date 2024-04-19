@@ -1,6 +1,6 @@
 class Api::V1::ItemsController < ApplicationController
   def index
-    current_user_id = request.env["current_user_id"]
+    current_user_id = current_user.id
     return head :unauthorized if current_user_id.nil?
     items = Item.where(user_id: current_user_id)
       .where(happened_at: start_time..end_time)
@@ -15,13 +15,13 @@ class Api::V1::ItemsController < ApplicationController
 
   def show
     item = Item.find params[:id]
-    return head :forbidden unless item.user_id == request.env['current_user_id']
+    return head :forbidden unless item.user_id == current_user.id
     render json: {resource: item}
   end
 
   def create
     item = Item.new params.permit(:amount, :happen_at, :happened_at, :kind, :note, tag_ids: [])
-    item.user_id = request.env["current_user_id"]
+    item.user_id = current_user.id
     if item.save
       render json: { resource: item }
     else
@@ -41,7 +41,7 @@ class Api::V1::ItemsController < ApplicationController
 
   def destroy
     item = Item.find params[:id]
-    return head :forbidden unless item.user_id == request.env["current_user_id"]
+    return head :forbidden unless item.user_id == current_user.id
     item.deleted_at = Time.now
     if item.save
       return head 200
@@ -51,7 +51,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def balance
-    current_user_id = request.env["current_user_id"]
+    current_user_id = current_user.id
     return head :unauthorized if current_user_id.nil?
     items = Item.where({ user_id: current_user_id })
       .where(happened_at: start_time..end_time)
@@ -72,7 +72,7 @@ class Api::V1::ItemsController < ApplicationController
   def summary
     hash = Hash.new
     items = Item
-      .where(user_id: request.env["current_user_id"])
+      .where(user_id: current_user.id)
       .where(kind: params[:kind])
       .where(happened_at: start_time..end_time)
     tags = []
