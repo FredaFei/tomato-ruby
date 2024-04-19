@@ -20,8 +20,7 @@ class Api::V1::TagsController < ApplicationController
  
   def create
     return render status: 401 if current_user.nil?
-    tag = Tag.new params.permit(:name, :sign, :kind)
-    tag.user = current_user
+    tag = Tag.new create_params.merge user: current_user
     if tag.save
       render json: {resource: tag}, status: :ok
     else
@@ -30,7 +29,7 @@ class Api::V1::TagsController < ApplicationController
   end
 
   def update
-    @tag.update(tag_params)
+    @tag.update(create_params)
     if @tag.errors.empty?
       render json: {resource: @tag}
     else
@@ -60,7 +59,7 @@ class Api::V1::TagsController < ApplicationController
     @tag = Tag.find(params[:id])
   end
 
-  def tag_params
+  def create_params
     params.permit(:name, :sign, :kind)
   end
 end

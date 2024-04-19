@@ -17,8 +17,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def create
-    item = Item.new params.permit(:amount, :happen_at, :happened_at, :kind, :note, tag_ids: [])
-    item.user_id = current_user.id
+    item = Item.new create_params.merge user: current_user
     if item.save
       render json: { resource: item }
     else
@@ -32,7 +31,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def update
-    @item.update(item_params)
+    @item.update(create_params)
     if @item.errors.empty?
       render json: {resource: @item}
     else
@@ -124,7 +123,7 @@ class Api::V1::ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def item_params
+  def create_params
     params.permit(:amount, :happen_at, :happened_at, :kind, :note, tag_ids: [])
   end
 end
