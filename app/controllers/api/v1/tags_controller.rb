@@ -3,7 +3,6 @@ class Api::V1::TagsController < ApplicationController
   before_action :set_tag, only: [:show, :update, :destroy]
 
   def index
-    return render status: 401 if current_user.nil?
     tags = Tag.where(user_id: current_user.id)
     tags = tags.where(kind: params[:kind]) unless params[:kind].nil?
     paged = tags.page(params[:page])
@@ -19,7 +18,6 @@ class Api::V1::TagsController < ApplicationController
   end
  
   def create
-    return render status: 401 if current_user.nil?
     tag = Tag.new create_params.merge user: current_user
     if tag.save
       render json: {resource: tag}, status: :ok

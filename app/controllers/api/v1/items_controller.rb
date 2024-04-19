@@ -4,7 +4,6 @@ class Api::V1::ItemsController < ApplicationController
 
   def index
     current_user_id = current_user.id
-    return head :unauthorized if current_user_id.nil?
     items = Item.where(user_id: current_user_id)
       .where(happened_at: start_time..end_time)
     items = items.where(kind: params[:kind]) unless params[:kind].blank?
@@ -51,7 +50,6 @@ class Api::V1::ItemsController < ApplicationController
   
   def balance
     current_user_id = current_user.id
-    return head :unauthorized if current_user_id.nil?
     items = Item.where({ user_id: current_user_id })
       .where(happened_at: start_time..end_time)
     income_items = []
