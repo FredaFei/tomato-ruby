@@ -1,50 +1,39 @@
 class Api::V1::ItemsController < ApplicationController
   before_action :must_sign_in
   before_action :set_item, only: [:show, :update, :destroy]
+  before_action :authorize_resource_access, only: [:show, :update, :destroy]
 
   def index
-    current_user_id = current_user.id
-    items = Item.where(user_id: current_user_id)
+    items = Item.where(user_id: current_user.id)
       .where(happened_at: start_time..end_time)
     items = items.where(kind: params[:kind]) unless params[:kind].blank?
     paged = items.page(params[:page])
-    render json: { resources: paged, pager: {
+    render_resources(paged, pager: {
       page: params[:page] || 1,
       per_page: Item.default_per_page,
       count: items.count,
-    } }
+    })
   end
 
   def create
-    item = Item.new create_params.merge user: current_user
-    if item.save
-      render json: { resource: item }
-    else
-      render json: { errors: item.errors }, status: :unprocessable_entity
-    end
+    render_resource Item.create create_params.merge user: current_user
   end
 
   def show
-    return head :forbidden unless @item.user_id == current_user.id
-    render json: {resource: @item}
+    render_resource(@item)
   end
 
   def update
     @item.update(create_params)
-    if @item.errors.empty?
-      render json: {resource: @item}
-    else
-      render json: {errors: @item.errors}, status: :unprocessable_entity
-    end
+    render_resource @item
   end
 
   def destroy
-    return head :forbidden unless @item.user_id == current_user.id
     @item.deleted_at = Time.now
     if @item.save
       return head :ok
     else
-      render json: { errors: @item.errors }, status: :unprocessable_entity
+      render_resource(@item)
     end
   end
   

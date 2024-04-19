@@ -1,7 +1,7 @@
 class Api::V1::MesController < ApplicationController
+  before_action :must_sign_in
+
   def show
-    user = current_user
-    return head :not_found if user.nil?
-    render json: { resource: user }
+    render_resource current_user
   end
 end

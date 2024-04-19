@@ -8,7 +8,7 @@ class Api::V1::ValidationCodesController < ApplicationController
     if validation_code.save
       render status: 200
     else
-      render json: {errors: validation_code.errors}, status: 422
+      render_resource validation_code
     end
   end
 end

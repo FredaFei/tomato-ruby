@@ -1,42 +1,33 @@
 class Api::V1::TagsController < ApplicationController
   before_action :must_sign_in
   before_action :set_tag, only: [:show, :update, :destroy]
+  before_action :authorize_resource_access, only: [:show, :update, :destroy]
 
   def index
     tags = Tag.where(user_id: current_user.id)
     tags = tags.where(kind: params[:kind]) unless params[:kind].nil?
     paged = tags.page(params[:page])
-    render json: {resources: paged, pager: {
+    render_resources(paged, pager: {
       page: params[:page] || 1,
       per_page: Tag.default_per_page,
       count: tags.count
-    }}
+    })
   end
+  
   def show
-    return head :forbidden unless @tag.user_id == current_user.id
-    render json: {resource: @tag}
+    render_resource(@tag)
   end
  
   def create
-    tag = Tag.new create_params.merge user: current_user
-    if tag.save
-      render json: {resource: tag}, status: :ok
-    else
-      render json: {errors: tag.errors}, status: :unprocessable_entity
-    end
+    render_resource Tag.create create_params.merge user: current_user
   end
 
   def update
     @tag.update(create_params)
-    if @tag.errors.empty?
-      render json: {resource: @tag}
-    else
-      render json: {errors: @tag.errors}, status: :unprocessable_entity
-    end
+    render_resource @tag
   end
   
   def destroy
-    return head :forbidden unless @tag.user_id == current_user.id
     @tag.deleted_at = Time.now
     ActiveRecord::Base.transaction do
       begin
