@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   validates :kind, presence: true
   validates :happen_at, presence: true
   validates :tag_ids, presence: true
-
+  validates :note, length: { maximum: 50 }
   belongs_to :user
 
   validate :check_tag_ids_belong_to_user

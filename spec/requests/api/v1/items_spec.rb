@@ -114,6 +114,20 @@ RSpec.describe "Items", type: :request do
       expect(json["errors"]["tag_ids"][0]).to be_a String
       expect(json["errors"]["happen_at"][0]).to be_a String
     end
+    it "创建时 note 选填" do
+      user = create :user
+      tag1 = create :tag, user: user
+      tag2 = create :tag, user: user
+      expect {
+        post "/api/v1/items", params: { amount: 99, tag_ids: [tag1.id, tag2.id],
+                                        happen_at: "2018-01-01T00:00:00+08:00",
+                                        kind: 'income', note: 'test-12345' },
+                              headers: user.generate_auth_header
+      }.to change { Item.count }.by 1
+      expect(response).to have_http_status 200
+      json = JSON.parse response.body
+      expect(json["resource"]["note"]).to eq "test-12345"
+    end
   end
   describe "获取账目" do
     it "未登录获取账目" do
@@ -147,26 +161,26 @@ RSpec.describe "Items", type: :request do
     end
     it "登录后修改账目" do
       tag1 = create :tag
-      item = create :item, kind: 'expenses', amount: 100, tag_ids: [tag1.id]
-      expect {
-        patch "/api/v1/items/#{item.id}", params: { amount: 99, tag_ids: [tag1.id],
-                                        happen_at: "2018-01-01T00:00:00+08:00",
-                                        kind: 'income' },
-                              headers: item.user.generate_auth_header
-      }
+      tag2 = create :tag, user: tag1.user
+      item = create :item, kind: 'expenses', amount: 100, tag_ids: [tag1.id], note: 'yy', user: tag1.user
+      patch "/api/v1/items/#{item.id}", params: { kind: 'income', amount: 99, happen_at: "2018-01-01T00:00:00+08:00",
+                                                  tag_ids: [tag2.id] }, headers: item.user.generate_auth_header
+      item.reload
       expect(response).to have_http_status 200
       json = JSON.parse response.body
+      expect(json["resource"]["kind"]).to eq "income"
       expect(json["resource"]["amount"]).to eq 99
       expect(json["resource"]["happen_at"]).to eq "2018-01-01T00:00:00.000+08:00"
-      expect(json["resource"]["kind"]).to eq "income"
+      expect(json["resource"]["tag_ids"][0]).to eq tag2.id
     end
     it "登录后部分修改账目" do
-      item = create :item, kind: 'expenses', amount: 100
-      patch "/api/v1/items/#{item.id}", params: {kind: 'income'}, headers: item.user.generate_auth_header
+      item = create :item, kind: 'expenses', amount: 100, note: 'aaa'
+      patch "/api/v1/items/#{item.id}", params: {kind: 'income', note: 'bbb'}, headers: item.user.generate_auth_header
       expect(response).to have_http_status 200
       json = JSON.parse response.body
       expect(json["resource"]["kind"]).to eq "income"
       expect(json["resource"]["amount"]).to eq 100
+      expect(json["resource"]["note"]).to eq "bbb"
     end
   end
 
@@ -179,19 +193,19 @@ RSpec.describe "Items", type: :request do
     end
     it "登录后删除账目" do
       user = create :user
-      tag = create :tag, user: user
+      tag1 = create :tag, user: user
       item = create :item, tag_ids: [tag1.id], user: user
       delete "/api/v1/items/#{item.id}", headers: user.generate_auth_header
       expect(response).to have_http_status(200)
       item.reload
-      expect(tag.deleted_at).not_to eq nil
+      expect(item.deleted_at).not_to eq nil
     end
     it "登录后删除别人的账目" do
       user = create :user
       other = create :user
-      tag = create :tag, user: user
-      item = create :item, tag_ids: [tag1.id], user: other
-      delete "/api/v1/items/#{item.id}", headers: user.generate_auth_header
+      tag1 = create :tag, user: user
+      item = create :item, tag_ids: [tag1.id], user: user
+      delete "/api/v1/items/#{item.id}", headers: other.generate_auth_header
       expect(response).to have_http_status(403)
     end
   end

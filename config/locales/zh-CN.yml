@@ -10,6 +10,14 @@ zh-CN:
           attributes:
             amount:
               other_than: 金额不能为零
+            kind:
+              blank: 类型不能为空
+            tag_ids:
+              blank: 标签不能为空
+            happened_at:
+              blank: 时间不能为空
+            note:
+              too_long: 备注长度超过50
         validation_code:
           attributes:
             email:
@@ -20,3 +28,4 @@ zh-CN:
         invalid: 格式不正确
         blank: 必填
         not_found: 找不到对应的记录
+        record_invalid: "记录无效"

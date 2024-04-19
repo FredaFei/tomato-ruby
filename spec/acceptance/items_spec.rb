@@ -37,6 +37,7 @@ resource "账目" do
       response_field :kind, "类型", enum: ["expenses", "income"]
       response_field :happen_at, "发生时间"
       response_field :tag_ids, "标签列表（只传ID）"
+      response_field :note, "备注（最大长度为50）"
     end
     let(:amount) { 9900 }
     let(:kind) { "expenses" }
@@ -64,6 +65,7 @@ resource "账目" do
       response_field :tag_ids, "标签列表（只传ID）"
       response_field :user_id, "用户ID"
       response_field :deleted_at, "删除时间"
+      response_field :note, "备注（最大长度为50）"
     end
     example "获取账目详情" do
       do_request
@@ -86,6 +88,7 @@ resource "账目" do
       response_field :tag_ids, "标签列表（只传ID）"
       response_field :user_id, "用户ID"
       response_field :deleted_at, "删除时间"
+      response_field :note, "备注（最大长度为50）"
     end
     let (:tag){ create :tag, user: current_user }
     let (:item) { create :item, amount: 100, tag_ids: [tag.id], happened_at: "2018-06-18T00:00:00+08:00", user: current_user } 

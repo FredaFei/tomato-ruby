@@ -20,7 +20,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def create
-    item = Item.new params.permit(:amount, :happen_at, :happened_at, :kind, tag_ids: [])
+    item = Item.new params.permit(:amount, :happen_at, :happened_at, :kind, :note, tag_ids: [])
     item.user_id = request.env["current_user_id"]
     if item.save
       render json: { resource: item }
@@ -31,7 +31,7 @@ class Api::V1::ItemsController < ApplicationController
 
   def update
     item = Item.find params[:id]
-    item.update params.permit(:amount, :happen_at, :happened_at, :kind, tag_ids: [])
+    item.update params.permit(:amount, :happen_at, :happened_at, :kind, :note, tag_ids: [])
     if item.errors.empty?
       render json: {resource: item}
     else

@@ -7,5 +7,6 @@ FactoryBot.define do
     tag_ids { [(create(:tag, user: user)).id] }
     happen_at { Faker::Date.between(from: 2.days.ago, to: Date.today) }
     kind { "expenses" }
+    note { Faker::Lorem.paragraph_by_chars(number: 50) }
   end
 end
