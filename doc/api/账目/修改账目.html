@@ -221,6 +221,14 @@ table th, table td {
                   <span class="description">删除时间</span>
                 </td>
               </tr>
+              <tr>
+                <td>
+                    <span class="name">resource[note]</span>
+                </td>
+                <td>
+                  <span class="description">备注（最大长度为50）</span>
+                </td>
+              </tr>
             </tbody>
           </table>
 
@@ -228,14 +236,14 @@ table th, table td {
 
             <h4>Headers</h4>
             <pre class="request headers">Version: HTTP/1.0
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2OTQsImV4cCI6MTcxMzQyMzUyOH0.re7Y9_q8_cnR-sVAO6BB-0j7RFqTWn6N3cYXF9x7HHI
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3NDIsImV4cCI6MTcxMzUzMDM2Mn0.XHVi-C-cl0tA8of9gPVIy9PzVdxYp86WT1jt_Wefc2U
 Accept: application/json
 Content-Type: application/json
 Host: example.org
 Cookie: </pre>
 
           <h4>Route</h4>
-          <pre class="request route highlight">PATCH /api/v1/items/1521</pre>
+          <pre class="request route highlight">PATCH /api/v1/items/1623</pre>
 
 
             <h4>Body</h4>
@@ -251,40 +259,40 @@ X-Download-Options: noopen
 X-Permitted-Cross-Domain-Policies: none
 Referrer-Policy: strict-origin-when-cross-origin
 Content-Type: application/json; charset=utf-8
-ETag: W/&quot;f9d1dadcc73568fc61638cbb56177f24&quot;
+ETag: W/&quot;f89029d62e3fdf4446edffadbbac2df3&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: 29197c42-66fd-40cd-93aa-9b7eca23c2bb
-X-Runtime: 0.007180
+X-Request-Id: 27796850-f736-41df-befd-502aa98e5219
+X-Runtime: 0.009611
 vary: Accept, Origin
-Content-Length: 484</pre>
+Content-Length: 485</pre>
             <h4>Status</h4>
             <pre class="response status">200 OK</pre>
               <h4>Body</h4>
               <pre class="response body">{
   &quot;resource&quot;: {
     &quot;amount&quot;: 101,
-    &quot;id&quot;: 1521,
-    &quot;user_id&quot;: 694,
+    &quot;id&quot;: 1623,
+    &quot;user_id&quot;: 742,
     &quot;note&quot;: null,
     &quot;tag_ids&quot;: [
-      1764
+      1889
     ],
     &quot;happened_at&quot;: &quot;2018-06-18T00:00:00.000+08:00&quot;,
     &quot;deleted_at&quot;: null,
     &quot;kind&quot;: &quot;expenses&quot;,
-    &quot;created_at&quot;: &quot;2024-04-18T12:58:48.974+08:00&quot;,
-    &quot;updated_at&quot;: &quot;2024-04-18T12:58:48.981+08:00&quot;,
+    &quot;created_at&quot;: &quot;2024-04-19T18:39:22.343+08:00&quot;,
+    &quot;updated_at&quot;: &quot;2024-04-19T18:39:22.353+08:00&quot;,
     &quot;happen_at&quot;: &quot;2018-06-18T00:00:00.000+08:00&quot;,
     &quot;tags&quot;: [
       {
-        &quot;id&quot;: 1764,
-        &quot;user_id&quot;: 694,
-        &quot;name&quot;: &quot;Non.&quot;,
-        &quot;sign&quot;: &quot;❤&quot;,
+        &quot;id&quot;: 1889,
+        &quot;user_id&quot;: 742,
+        &quot;name&quot;: &quot;Ut .&quot;,
+        &quot;sign&quot;: &quot;😀&quot;,
         &quot;deleted_at&quot;: null,
         &quot;kind&quot;: &quot;expenses&quot;,
-        &quot;created_at&quot;: &quot;2024-04-18T12:58:48.969+08:00&quot;,
-        &quot;updated_at&quot;: &quot;2024-04-18T12:58:48.969+08:00&quot;
+        &quot;created_at&quot;: &quot;2024-04-19T18:39:22.340+08:00&quot;,
+        &quot;updated_at&quot;: &quot;2024-04-19T18:39:22.340+08:00&quot;
       }
     ]
   }

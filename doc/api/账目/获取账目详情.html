@@ -178,6 +178,14 @@ table th, table td {
                   <span class="description">删除时间</span>
                 </td>
               </tr>
+              <tr>
+                <td>
+                    <span class="name">resource[note]</span>
+                </td>
+                <td>
+                  <span class="description">备注（最大长度为50）</span>
+                </td>
+              </tr>
             </tbody>
           </table>
 
@@ -185,14 +193,14 @@ table th, table td {
 
             <h4>Headers</h4>
             <pre class="request headers">Version: HTTP/1.0
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2OTMsImV4cCI6MTcxMzQyMzUyOH0.zrbobZjW9JwATDoYQae4iG5PGU4Zx_A1R_iwUts8AKs
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3NDEsImV4cCI6MTcxMzUzMDM2Mn0.7XfLOiDHvtn3njK41oT6IBPNcV8qycdoZyYRS09mxkA
 Accept: application/json
 Content-Type: application/json
 Host: example.org
 Cookie: </pre>
 
           <h4>Route</h4>
-          <pre class="request route highlight">GET /api/v1/items/1520</pre>
+          <pre class="request route highlight">GET /api/v1/items/1622</pre>
 
 
 
@@ -206,10 +214,10 @@ X-Download-Options: noopen
 X-Permitted-Cross-Domain-Policies: none
 Referrer-Policy: strict-origin-when-cross-origin
 Content-Type: application/json; charset=utf-8
-ETag: W/&quot;b0e195b2549ea78d1cfd92a21666132a&quot;
+ETag: W/&quot;2cd6c0a41ee1dd3ab82bc2cb53cd8592&quot;
 Cache-Control: max-age=0, private, must-revalidate
-X-Request-Id: b7bc81f2-4eab-4faa-ae33-65fc1813a6c2
-X-Runtime: 0.017588
+X-Request-Id: 90391eb1-8306-4147-a7cc-e4302ac669ed
+X-Runtime: 0.004838
 vary: Accept, Origin
 Content-Length: 486</pre>
             <h4>Status</h4>
@@ -217,29 +225,29 @@ Content-Length: 486</pre>
               <h4>Body</h4>
               <pre class="response body">{
   &quot;resource&quot;: {
-    &quot;id&quot;: 1520,
-    &quot;user_id&quot;: 693,
-    &quot;amount&quot;: 8501,
+    &quot;id&quot;: 1622,
+    &quot;user_id&quot;: 741,
+    &quot;amount&quot;: 3075,
     &quot;note&quot;: null,
     &quot;tag_ids&quot;: [
-      1763
+      1888
     ],
     &quot;happened_at&quot;: &quot;2018-06-18T00:00:00.000+08:00&quot;,
     &quot;deleted_at&quot;: null,
     &quot;kind&quot;: &quot;expenses&quot;,
-    &quot;created_at&quot;: &quot;2024-04-18T12:58:48.944+08:00&quot;,
-    &quot;updated_at&quot;: &quot;2024-04-18T12:58:48.944+08:00&quot;,
+    &quot;created_at&quot;: &quot;2024-04-19T18:39:22.327+08:00&quot;,
+    &quot;updated_at&quot;: &quot;2024-04-19T18:39:22.327+08:00&quot;,
     &quot;happen_at&quot;: &quot;2018-06-18T00:00:00.000+08:00&quot;,
     &quot;tags&quot;: [
       {
-        &quot;id&quot;: 1763,
-        &quot;user_id&quot;: 693,
-        &quot;name&quot;: &quot;Vol.&quot;,
-        &quot;sign&quot;: &quot;😡&quot;,
+        &quot;id&quot;: 1888,
+        &quot;user_id&quot;: 741,
+        &quot;name&quot;: &quot;Qua.&quot;,
+        &quot;sign&quot;: &quot;😀&quot;,
         &quot;deleted_at&quot;: null,
         &quot;kind&quot;: &quot;expenses&quot;,
-        &quot;created_at&quot;: &quot;2024-04-18T12:58:48.938+08:00&quot;,
-        &quot;updated_at&quot;: &quot;2024-04-18T12:58:48.938+08:00&quot;
+        &quot;created_at&quot;: &quot;2024-04-19T18:39:22.324+08:00&quot;,
+        &quot;updated_at&quot;: &quot;2024-04-19T18:39:22.324+08:00&quot;
       }
     ]
   }
