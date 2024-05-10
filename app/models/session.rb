@@ -8,8 +8,7 @@ class Session
 
   def check_validation_code
     return if self.code.empty?
-    return if Rails.env.development? && self.code == '123456'
-    
+    return if ['development', 'test'].include?(Rails.env) && self.code == '123456'
     validation_code = ValidationCode.find_by(email: self.email, code: self.code, used_at: nil)
     if validation_code
       validation_code.update(used_at: Time.now)
